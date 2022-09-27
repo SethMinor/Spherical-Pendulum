@@ -10,7 +10,7 @@ L = 6;
 time = [0 10];
 
 % Initial conditions
-y0 = [pi/2, -1, pi/1.5, 0.5]';
+y0 = [1.5, -1.2, 2.2, 0.5]';
 
 % Numerical integration
 options = odeset('RelTol', 1e-11, 'AbsTol', 1e-11);
@@ -50,7 +50,11 @@ for i = 1:100
     hold on
 
     % Plot the planar projections
-    plot3(X(1:i), Y(1:i), 0*Z(1:i) - L, '--')
+    plot3(X(1:i), Y(1:i), 0*Z(1:i) - L, '-','Color',[0.9290 0.6940 0.1250])
+    hold on
+    plot3(X(1:i), 0*Y(1:i) + L, Z(1:i), '-','Color',[0.9290 0.6940 0.1250])
+    hold on
+    plot3(0*X(1:i) + L, Y(1:i), Z(1:i), '-','Color',[0.9290 0.6940 0.1250])
 
     % Stop plotting
     hold off
@@ -89,5 +93,3 @@ function dydt = spherical(y, g, L)
     dydt(4) = sin(y(3)).*cos(y(3)).*(y(2)).^2 - (g/L)*sin(y(3));
 
 end
-
-
